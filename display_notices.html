@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOTICES</title>
+    <style>
+       body::-webkit-scrollbar {
+          display: none;
+      }
+      body {
+            font-family: 'Roboto', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background-color: white; /* Light background color */
+           /* Optional: subtle background image */
+            background-size: cover;
+            background-attachment: fixed;
+        }
+      .cont {
+            background-color: white;
+            padding: 10px;
+            margin-left: 1%;
+            width: 95%;
+            margin-top: 2%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .circle, .circle2 {
+            background-size: cover;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .circle {
+            background-image: url('puchd.jpg');
+            margin-left: 5%;
+        }
+
+        .circle2 {
+            background-image: url(ncc.jpg);
+            margin-right: 5%;
+        }
+
+        .heading {
+            margin: 2px 20px;
+            color: #333;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 5px rgba(255, 0, 0, 0.5);
+        }
+        .assignment-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 5%;
+            width: 50%;
+            margin-left: 25%;
+           height: 250px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .assignment-content {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .assignment-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .assignment-description, .assignment-date, .assignment-subject, .assignment-teacher {
+            margin-bottom: 8px;
+            font-size: 2rem;
+            margin-left: 10%;
+        }
+
+        img {
+            height: 400px; /* Set image height for assignment images */
+            border-radius: 10%;
+            margin-left: 20px;
+        }
+
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            margin-left: 95%;
+            padding: 2px;
+            margin-top: 5%;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+        
+        .nav {
+            background-color: red;
+            width: 100%;
+        }
+        .nav a {
+            margin-left: 20%;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <div class="circle"></div>  
+        <h1 class="heading" style="font-family: 'Times New Roman', Times, serif;"> BATTALION&nbsp;&nbsp;HUB    
+
+    </h1>   
+    <a href="event.html" style="font-size: 1.5rem;text-decoration: none;color: red;">EVENT</a>
+    <a href="notice-add.html" style="font-size: 1.5rem;text-decoration: none;color: red;">NOTICE</a> 
+        <div class="circle2"></div>   
+    </div>
+
+    <h2 style="text-align: center;font-size: 1.3rem;"> NOTICES</h2>
+    <div id="assignment-container">
+        <!-- Assignment cards will be dynamically inserted here -->
+    </div>
+
+    <script>
+        function displayAssignmentList() {
+            const assignments = JSON.parse(localStorage.getItem('assignments')) || [];
+            const assignmentContainer = document.getElementById("assignment-container");
+            assignmentContainer.innerHTML = ""; // Clear existing assignments
+
+            assignments.forEach((assignment, index) => {
+                const card = document.createElement("div");
+                card.classList.add("assignment-card");
+
+                const assignmentContent = document.createElement("div");
+                assignmentContent.classList.add("assignment-content");
+
+                const assignmentTitle = document.createElement("div");
+                assignmentTitle.classList.add("assignment-title");
+                assignmentTitle.textContent = assignment.title;
+                assignmentContent.appendChild(assignmentTitle);
+
+                const assignmentDate = document.createElement("div");
+                assignmentDate.classList.add("assignment-date");
+                assignmentDate.textContent = "Due Date: " + assignment.date;
+                assignmentContent.appendChild(assignmentDate);
+
+                const assignmentDescription = document.createElement("div");
+                assignmentDescription.classList.add("assignment-description");
+                assignmentDescription.textContent = "Description: " + assignment.description;
+                assignmentContent.appendChild(assignmentDescription);
+
+
+                const assignmentTeacher = document.createElement("div");
+                assignmentTeacher.classList.add("assignment-teacher");
+                assignmentTeacher.textContent = "Teacher: " + assignment.teacher;
+                assignmentContent.appendChild(assignmentTeacher);
+
+                // Create delete button
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "Delete";
+                deleteBtn.classList.add("delete-btn");
+                deleteBtn.addEventListener("click", function() {
+                    deleteAssignment(index);
+                });
+                assignmentContent.appendChild(deleteBtn);
+
+                // Append content to card
+                card.appendChild(assignmentContent);
+
+                // Assignment image
+                
+                // Append card to container
+                assignmentContainer.appendChild(card);
+            });
+        }
+
+        // Function to delete an assignment
+        function deleteAssignment(index) {
+            let assignments = JSON.parse(localStorage.getItem('assignments')) || [];
+            assignments.splice(index, 1); // Remove the assignment at the given index
+            localStorage.setItem('assignments', JSON.stringify(assignments)); // Update local storage
+            displayAssignmentList(); // Refresh the display
+        }
+
+        window.onload = displayAssignmentList;
+    </script>
+</body>
+</html>
