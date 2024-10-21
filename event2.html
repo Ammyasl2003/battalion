@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EVENT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f3; /* Light background color */
+            background-image: url('india.jpg'); /* Optional: subtle background image */
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        /* Header and Circle Styles */
+        .cont {
+            background-color: white;
+            padding: 10px;
+            margin-left: 1%;
+            width: 95%;
+            margin-top: 2%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .circle, .circle2 {
+            background-size: cover;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .circle {
+            background-image: url('puchd.jpg');
+            margin-left: 5%;
+        }
+
+        .circle2 {
+            background-image: url(ncc.jpg);
+            margin-right: 5%;
+        }
+
+        .heading {
+            margin: 2px 20px;
+            color: #333;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 5px rgba(255, 0, 0, 0.5);
+        }
+
+        /* Flexbox container for form and image */
+        .form-image-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top:10px;
+            margin-left: 20%;
+        }
+
+        .form-image {
+            margin-bottom: 10%;
+            margin-right: 10%;
+            background-image: url("sirji.jpg");
+            background-size: cover;
+            width: 200px;
+            height: 220px;
+            border-radius: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Form Styles */
+        .form-container {
+            width: 40%;
+            padding: 30px 40px;
+            border-radius: 10px;margin-left: 6%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .form-container:hover {
+            transform: translateY(-5px);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            border: 1px solid #28a745;
+            outline: none;
+        }
+
+        button {
+            background-color: orange;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: orangered;
+        }
+
+        /* Event Box Styles */
+        .event-box {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 300px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            max-height: 300px; /* Add max height for overflow */
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 22px;
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0 0;
+        }
+
+        li {
+            padding: 10px;
+            font-size: 18px;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        li:hover {
+            background-color: #f1f1f1;
+        }
+
+        li button {
+            position: absolute;
+            right: 0;
+            font-size: 0.8rem;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 3px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        li button:hover {
+            background-color: #c82333;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cont">
+        <div class="circle"></div>  
+        <h1 class="heading" style="font-family: 'Times New Roman', Times, serif;">BATTALION&nbsp;&nbsp;HUB</h1>   
+        <a href="event.html" style="font-size: 1.5rem;text-decoration: none;color: red;">EVENT</a>
+        <a href="notice-add.html" style="font-size: 1.5rem;text-decoration: none;color: red;">NOTICE</a> 
+        <div class="circle2"></div>   
+    </div>
+
+    <!-- Container for Form and Image -->
+    <div class="form-image-container">
+        <!-- Form to Add Events -->
+        <div class="form-container">
+            <h2>Add New Event</h2>
+            <form id="event-form">
+                <label for="event-name">Event Name:</label>
+                <input type="text" id="event-name" required>
+
+                <label for="event-date">Event Date:</label>
+                <input type="date" id="event-date" required>
+
+                <label for="event-purpose">Event Purpose:</label>
+                <input type="text" id="event-purpose" required>
+
+                <label for="event-organizer">Organizer Name:</label>
+                <input type="text" id="event-organizer" required>
+
+                <button type="submit" style="margin-left: 40%; margin-top: 2%;">Add Event</button>
+            </form>
+        </div>
+
+        <!-- Image adjacent to form -->
+        <div class="form-image">
+            <h1 style="margin-top: 125%; margin-left: 2%; font-size: 1.4rem;font-family: 'Roboto', sans-serif; color: black;">Lieut. Rahul Jassal</h1>
+        </div>
+    </div>
+
+    <!-- Display Upcoming Events -->
+    <div class="event-box">
+        <h2>Upcoming Events</h2>
+        <ul id="event-list"></ul>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const eventForm = document.getElementById("event-form");
+            const eventList = document.getElementById("event-list");
+            let events = [];
+
+            // Load stored events (if available)
+            if (localStorage.getItem('events')) {
+                events = JSON.parse(localStorage.getItem('events'));
+            }
+
+            // Display upcoming events on page load
+            displayUpcomingEvents();
+
+            // Handle form submission
+            eventForm.addEventListener("submit", function(e) {
+                e.preventDefault();
+                
+                const eventName = document.getElementById("event-name").value;
+                const eventDate = document.getElementById("event-date").value;
+                const eventPurpose = document.getElementById("event-purpose").value;
+                const eventOrganizer = document.getElementById("event-organizer").value;
+                
+                const newEvent = {
+                    name: eventName,
+                    date: eventDate,
+                    purpose: eventPurpose,
+                    organizer: eventOrganizer
+                };
+                
+                events.push(newEvent);
+                localStorage.setItem('events', JSON.stringify(events));
+                
+                displayUpcomingEvents();
+                
+                // Clear the form
+                eventForm.reset();
+            });
+
+            // Helper function to format the date as DD-MM-YYYY
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+                const year = date.getFullYear();
+                return `${day}-${month}-${year}`;
+            }
+
+            // Display only future events and sort them by date
+            function displayUpcomingEvents() {
+                eventList.innerHTML = ''; // Clear the list first
+
+                const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+
+                // Filter future events and sort them by date in ascending order
+                events
+                    .filter(event => event.date >= today)
+                    .sort((a, b) => new Date(a.date) - new Date(b.date)) // Sort events by date
+                    .forEach((event, index) => {
+                        const listItem = document.createElement("li");
+                        const formattedDate = formatDate(event.date); // Use the formatted date
+
+                        listItem.innerHTML = `(${formattedDate})<br>
+                            <strong>${event.name}</strong><br>
+                            Purpose: ${event.purpose}<br>
+                            Organizer: ${event.organizer}
+                            <button onclick="deleteEvent(${index})">Delete</button>`;
+                        eventList.appendChild(listItem);
+
+                        // Check if notification should be sent
+                        checkForNotifications(event, formattedDate);
+                    });
+            }
+
+            // Check if an event is upcoming within the next day and show notification
+            function checkForNotifications(event, formattedDate) {
+                const eventDate = new Date(event.date);
+                const now = new Date();
+                const oneDayLater = new Date(now);
+                oneDayLater.setDate(now.getDate() + 1);
+
+                // If the event is tomorrow, show notification
+                if (eventDate <= oneDayLater && eventDate > now) {
+                    showNotification(event.name, `Upcoming Event: ${event.name} is happening on ${formattedDate}.`);
+                }
+            }
+
+            // Function to show desktop notifications
+            function showNotification(title, body) {
+                // Check if notifications are supported
+                if (Notification.permission === "granted") {
+                    new Notification(title, { body });
+                } else if (Notification.permission !== "denied") {
+                    Notification.requestPermission().then(permission => {
+                        if (permission === "granted") {
+                            new Notification(title, { body });
+                        }
+                    });
+                }
+            }
+
+            // Delete event by index
+            window.deleteEvent = function(index) {
+                events.splice(index, 1); // Remove the event at the specified index
+                localStorage.setItem('events', JSON.stringify(events)); // Update localStorage
+                displayUpcomingEvents(); // Refresh the display
+            };
+        });
+    </script>
+</body>
+</html>
